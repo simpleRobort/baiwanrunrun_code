@@ -1,18 +1,14 @@
-name: GitHub Actions Build and Deploy Demo
-on:
-  push:
-    branches:
-      - master
+name: Deploy to GitHub Pages
+
+on: push
+
 jobs:
-  build-and-deploy:
+  hugo-deploy-gh-pages:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout
-      uses: actions/checkout@master
-
-    - name: Build and Deploy
-      uses: JamesIves/github-pages-deploy-action@master
+    - uses: actions/checkout@master
+    - name: hugo-deploy-gh-pages
+      uses: khanhicetea/gh-actions-hugo-deploy-gh-pages@master
       env:
-        BRANCH: gh-pages
-        FOLDER: build
-        BUILD_SCRIPT: npm install && npm run build
+        GIT_DEPLOY_KEY: ${{ secrets.secret }}
+        HUGO_VERSION: "0.53"
