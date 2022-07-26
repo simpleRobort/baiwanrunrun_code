@@ -15,4 +15,4 @@ jobs:
           git checkout -b pagebranch
           git add .
           git commit -m "generated"
-          git push
+          git push --set-upstream origin pagebranch
