@@ -8,11 +8,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-        with:
-          ref: 'double'
-          ssh-key: ${{ secrets.Secret }}
       - run: |
+          date > generated.txt
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git checkout -b pagebranch
+          npm i && npm run build
           git add .
           git commit -m "generated"
-          git push
-
+          git push --set-upstream origin pagebranch
