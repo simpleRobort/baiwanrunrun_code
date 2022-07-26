@@ -59,41 +59,52 @@ export default new Vuex.Store({
   getters: {
     cantgo: function (state) {
       return function (left, feet, area) {
-        if (state.humanInfo.isRight) {
-          return state[area].some((item) => {
-            if (left >= item.rl && left < (item.rl + item.rw) && feet >= item.rb && feet < (item.rb + item.rh)) return true
-          })
-        } else if (state.humanInfo.isLeft) {
-          return state[area].some(item => {
-            if (left >= item.rl && left < (item.rl + item.rw) && feet >= item.rb && feet < (item.rb + item.rh)) return true
-          })
-        }
+        if (!state.humanInfo.isRight && !state.humanInfo.isLeft) return false
+        return state[area].some(
+          item => (
+            left >= item.rl &&
+            left < (item.rl + item.rw) &&
+            feet >= item.rb &&
+            feet < (item.rb + item.rh)
+          )
+        )
       }
     },
     cantJump: function (state) {
       return function (isUp, feet, left, area) {
         if (isUp) {
-          return state[area].some((item) => {
-            if ((feet + 60) >= item.rb && (feet + 60) < (item.rb + item.rh) && (left + 15) >= item.rl && left <= (item.rl + item.rw)) return true
-          })
+          return state[area].some(
+            item => (
+              (feet + 60) >= item.rb &&
+              (feet + 60) < (item.rb + item.rh) &&
+              (left + 15) >= item.rl &&
+              left <= (item.rl + item.rw)
+            )
+          )
         } else {
-          return state[area].some((item, index) => {
-            if (feet >= item.rb && feet <= (item.rb + item.rh + 6) && (left + 15) >= item.rl && left <= (item.rl + item.rw)) {
-              state.stayIndex = index
-              return true
+          return state[area].some(
+            (item, index) => {
+              if (feet >= item.rb &&
+                  feet <= (item.rb + item.rh + 6) &&
+                  (left + 15) >= item.rl &&
+                  left <= (item.rl + item.rw)
+              ) {
+                state.stayIndex = index
+                return true
+              }
             }
-          })
+          )
         }
       }
     },
     freeFall: function (state) {
       return function (left) {
         if (state.isJump) return false
-        if (state.humanInfo.isRight && left > (state.stopArea[state.stayIndex].rl + state.stopArea[state.stayIndex].rw)) {
-          return true
-        } else if (state.humanInfo.isLeft && (left + 15) <= state.stopArea[state.stayIndex].rl) {
-          return true
-        }
+        const isRightDown = state.humanInfo.isRight &&
+            left > (state.stopArea[state.stayIndex].rl + state.stopArea[state.stayIndex].rw)
+        const isLeftDown = state.humanInfo.isLeft &&
+            (left + 15) <= state.stopArea[state.stayIndex].rl
+        return isLeftDown || isRightDown
       }
     }
   }

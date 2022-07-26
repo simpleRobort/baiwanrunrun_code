@@ -11,7 +11,7 @@ export default {
   },
   methods: {
     init: function () {
-      var obj = {
+      let obj = {
         rl: parseFloat(this.rleft.replace('px', '')),
         rw: parseFloat(this.rwidth.replace('px', '')),
         rh: parseFloat(this.rheight.replace('px', '')),
