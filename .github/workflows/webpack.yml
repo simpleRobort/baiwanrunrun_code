@@ -8,11 +8,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-        with:
-          ref: 'double'
-          ssh-key: ${{ secrets.Secret }}
       - run: |
+          date > generated.txt
+          git config user.name github-actions
+          git config user.email github-actions@github.com
           git add .
           git commit -m "generated"
           git push
-
