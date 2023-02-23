@@ -1,5 +1,6 @@
 <template>
-  <div id="biscuit" class="onTheLand" :style="{left:this.rleft,width:this.rwidth,height:this.rheight,bottom:this.rbottom}"></div>
+  <div id="biscuit" class="onTheLand" :style="{left:this.rleft,width:this.rwidth,height:this.rheight,bottom:this.rbottom,lineHeight:this.rheight }">
+  50</div>
 </template>
 
 <script>
@@ -26,5 +27,7 @@ export default {
   #biscuit {
     border-radius: 50px;
     background-color: gold;
+    color: black;
+    text-align: center;
   }
 </style>

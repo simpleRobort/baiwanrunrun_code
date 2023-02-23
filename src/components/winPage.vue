@@ -1,8 +1,8 @@
 <template>
   <div class="winPage">
-    <h1>一般般</h1>
-    <div @click="playAgian()">下一关</div>
-    <div @click="back()">爷不玩了</div>
+    <h1>V你50</h1>
+    <div @click="playAgian()">我还要</div>
+    <div @click="back()">够了</div>
   </div>
 </template>
 

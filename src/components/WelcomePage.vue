@@ -1,7 +1,7 @@
 <template>
   <div class="WelcomePage">
-    <h1>百万快跑</h1>
-    <div @click="play()">test</div>
+    <h1>V你50自己捡</h1>
+    <div @click="play()">拿50</div>
     <div>设置</div>
     <div>关于</div>
   </div>

@@ -1,8 +1,8 @@
 <template>
   <div class="deadPage">
-    <h1>有些菜</h1>
-    <div @click="playAgian()">我真不菜</div>
-    <div @click="back()">我菜我菜</div>
+    <h1>V你50不要？</h1>
+    <div @click="playAgian()">要</div>
+    <div @click="back()">不要了</div>
   </div>
 </template>
 
